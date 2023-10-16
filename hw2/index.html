@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HW2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <button @click="sortArray">По возрастанию цены</button>
+    <button @click="sortArray(-1)">По убыванию цены</button>
+
+    <div v-for="product in products">
+        Наименование: {{ product.name }},
+        Цена: {{ product.price }}
+    </div>
+
+</div>
+<!--    Вы разрабатываете приложение для отображения и сортировки списка товаров. У вас есть массив объектов products, где каждый объект представляет товар с его названием и ценой. Вам необходимо отобразить список товаров и предоставить пользователю возможность сортировать товары по цене (по возрастанию и по убыванию).-->
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                products: [
+                    {
+                     name: "Продукт 1",
+                     price: 1000
+                    },
+                    {
+                        name: "Продукт 2",
+                        price: 2000
+                    },
+                    {
+                        name: "Продукт 3",
+                        price: 50
+                    },
+                    {
+                        name: "Продукт 4",
+                        price: 12
+                    },
+                    {
+                        name: "Продукт 5",
+                        price: 12000
+                    },
+                ]
+
+            },
+            methods: {
+                sortArray(ratio = 1) {
+                    this.products = this.products.sort((item, nextItem) => (
+                        item.price * ratio > nextItem.price * ratio ? 1 : -1)
+                    );
+                }
+                },
+
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+</html>
